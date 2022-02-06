@@ -20,3 +20,7 @@ spring:
           uri: lb://SUBJECT-SERVICE
           predicates:
             - Path=/api/v1/subjects/**
+        - id: exec-service
+          uri: lb://EXEC-SERVICE
+          predicates:
+            - Path=/api/v1/exec/**
