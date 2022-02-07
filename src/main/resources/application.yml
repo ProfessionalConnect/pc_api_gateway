@@ -24,3 +24,7 @@ spring:
           uri: lb://EXEC-SERVICE
           predicates:
             - Path=/api/v1/exec/**
+        - id: team-service
+          uri: lb://TEAM-SERVICE
+          predicates:
+            - Path=/api/v1/teams/**
