@@ -11,6 +11,9 @@ eureka:
       defaultZone: http://localhost:8761/eureka
 
 spring:
+  jwt:
+    key: test_key_just_local
+
   application:
     name: gateway-service
   cloud:
@@ -20,14 +23,23 @@ spring:
           uri: lb://SUBJECT-SERVICE
           predicates:
             - Path=/api/v1/subjects/**
+          filters:
+            - MemberAuthorizationFilter
+
         - id: exec-service
           uri: lb://EXEC-SERVICE
           predicates:
             - Path=/api/v1/exec/**
+          filters:
+            - MemberAuthorizationFilter
+
         - id: team-service
           uri: lb://TEAM-SERVICE
           predicates:
             - Path=/api/v1/teams/**
+          filters:
+            - MemberAuthorizationFilter
+
         - id: user-service
           uri: lb://USER-SERVICE
           predicates:
