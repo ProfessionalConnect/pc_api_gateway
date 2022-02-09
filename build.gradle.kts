@@ -23,7 +23,13 @@ dependencies {
     implementation("org.springframework.cloud:spring-cloud-starter-gateway")
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
+    implementation("io.jsonwebtoken:jjwt:0.9.1")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+    // jdk 11 Dependency Problem -> jwt javax.xml.bind cannot found
+    implementation("javax.xml.bind:jaxb-api:2.3.1")
+    implementation("com.sun.xml.bind:jaxb-core:2.3.0.1")
+    implementation("com.sun.xml.bind:jaxb-impl:2.3.1")
 }
 
 dependencyManagement {
