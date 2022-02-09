@@ -28,3 +28,7 @@ spring:
           uri: lb://TEAM-SERVICE
           predicates:
             - Path=/api/v1/teams/**
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/api/v1/users/**
