@@ -39,11 +39,6 @@ class MemberAuthorizationFilter: AbstractGatewayFilterFactory<MemberAuthorizatio
             }
 
             val uuid = jwtTokenProvider.getUserUuid(accessToken)
-            val userRole = jwtTokenProvider.getUserRole(accessToken)
-
-            if (userRole != "MEMBER") {
-                return@GatewayFilter handleUnAuthorized(exchange)
-            }
 
             val httpHeaders =
                 Consumer<HttpHeaders> { httpHeader -> httpHeader.set(SecurityHeader.UUID, uuid) }

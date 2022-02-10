@@ -19,7 +19,7 @@ import java.util.function.Consumer
  */
 
 @Component
-class AuthorizationFilter: AbstractGatewayFilterFactory<AuthorizationFilter.Config>(Config::class.java) {
+class StudentAuthorizationFilter: AbstractGatewayFilterFactory<StudentAuthorizationFilter.Config>(Config::class.java) {
     @Autowired
     private lateinit var jwtTokenProvider: JwtTokenProvider
 
@@ -39,6 +39,11 @@ class AuthorizationFilter: AbstractGatewayFilterFactory<AuthorizationFilter.Conf
             }
 
             val uuid = jwtTokenProvider.getUserUuid(accessToken)
+            val userRole = jwtTokenProvider.getUserRole(accessToken)
+
+            if (userRole != "MEMBER") {
+                return@GatewayFilter handleUnAuthorized(exchange)
+            }
 
             val httpHeaders =
                 Consumer<HttpHeaders> { httpHeader -> httpHeader.set(SecurityHeader.UUID, uuid) }
