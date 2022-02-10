@@ -22,23 +22,45 @@ spring:
         - id: subject-service
           uri: lb://SUBJECT-SERVICE
           predicates:
-            - Path=/api/v1/subjects/**
+            - Path=/api/v1/subjects/ms/**
           filters:
             - MemberAuthorizationFilter
+        - id: subject-service
+          uri: lb://SUBJECT-SERVICE
+          predicates:
+            - Path=/api/v1/subjects/ss/**
+          filters:
+            - StudentAuthorizationFilter
+        - id: subject-service
+          uri: lb://SUBJECT-SERVICE
+          predicates:
+            - Path=/api/v1/subjects/ps/**
+          filters:
+            - ProAuthorizationFilter
+
+        - id: team-service
+          uri: lb://TEAM-SERVICE
+          predicates:
+            - Path=/api/v1/teams/ms/**
+          filters:
+            - MemberAuthorizationFilter
+        - id: team-service
+          uri: lb://TEAM-SERVICE
+          predicates:
+            - Path=/api/v1/teams/ss/**
+          filters:
+            - StudentAuthorizationFilter
+        - id: team-service
+          uri: lb://TEAM-SERVICE
+          predicates:
+            - Path=/api/v1/teams/ps/**
+          filters:
+            - ProAuthorizationFilter
 
         - id: exec-service
           uri: lb://EXEC-SERVICE
           predicates:
             - Path=/api/v1/exec/**
-          filters:
-            - MemberAuthorizationFilter
-
-        - id: team-service
-          uri: lb://TEAM-SERVICE
-          predicates:
-            - Path=/api/v1/teams/**
-          filters:
-            - MemberAuthorizationFilter
 
         - id: user-service
           uri: lb://USER-SERVICE
