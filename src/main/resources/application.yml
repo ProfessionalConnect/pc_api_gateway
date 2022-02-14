@@ -25,17 +25,20 @@ spring:
             allow-credentials: true
             allowedHeaders:
               - x-requested-with
+              - access-control-allow-origin
               - authorization
               - content-type
               - credential
               - X-AUTH-TOKEN
               - X-CSRF-TOKEN
+              - teamToken
             allowedMethods:
               - POST
               - GET
               - PUT
               - OPTIONS
               - DELETE
+              - HEAD
       routes:
         - id: subject-service
           uri: lb://SUBJECT-SERVICE
